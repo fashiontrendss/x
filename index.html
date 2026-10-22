@@ -1,72 +1,58 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="p:domain_verify" content="a81844e4848a6f05293babb53893af00"/>
-    <title>Open...</title>
+    <title>Gorgeous Fashion Inspo & Outfit Ideas | Fashion Inspo</title>
+    <meta name="description" content="Discover thousands of trendy fashion looks, elegant outfit ideas, and step-by-step styling guides to elevate your look.">
+    <meta name="keywords" content="fashion, outfit, style, fashion inspo, outfit ideas, fashion trends, styling ideas">
+    <meta name="robots" content="index, follow">
     <script>
-        const listUrl = "https://seribudollarperhari.github.io/banner/link.txt";
-
-        async function randomRedirect() {
-            try {
-                // Mengambil list txt dengan parameter waktu untuk mencegah cache
-                const response = await fetch(listUrl + "?t=" + new Date().getTime());
-                
-                if (!response.ok) {
-                    throw new Error("Gagal terhubung ke sumber link");
-                }
-                
-                const text = await response.text();
-                
-                const links = text.split('\n')
-                                  .map(link => link.trim())
-                                  .filter(link => link !== '');
-
-                if (links.length > 0) {
-                    // Pilih link acak
-                    const randomIndex = Math.floor(Math.random() * links.length);
-                    let targetUrl = links[randomIndex];
-                    
-                    // (Opsional) Mengambil kata kunci dari ?q= 
-                    // Baris ini menangkap parameter 'q' jika ada (misal: cake-recipes)
-                    const urlParams = new URLSearchParams(window.location.search);
-                    const keyword = urlParams.get('q');
-                    
-                    // Jika Anda ingin menempelkan kata kunci tersebut ke link tujuan (misal untuk tracking UTM), 
-                    // Anda bisa memodifikasi targetUrl di sini. Jika tidak, script tetap melakukan redirect normal.
-
-                    // Eksekusi redirect
-                    window.location.replace(targetUrl);
-                } else {
-                    document.getElementById('status').innerHTML = "<h3>Error: Daftar link kosong.</h3>";
-                }
-            } catch (error) {
-                console.error("Error:", error);
-                document.getElementById('status').innerHTML = "<h3>Terjadi kesalahan jaringan saat mengambil link.</h3>";
+        (function() {
+            var params = new URLSearchParams(window.location.search);
+            var q = params.get('q');
+            if (q) {
+                window.location.replace('detail.html' + window.location.search);
             }
-        }
-
-        window.onload = randomRedirect;
+        })();
     </script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f9f9f9;
-        }
-        .loader-text {
-            color: #555;
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="status" class="loader-text">Open web...</div>
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo-link">
+                <div class="logo">Fashion Inspo</div>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="hero">
+            <div class="container">
+                <h1>Find Your Next Stunning Fashion Look</h1>
+                <p>Explore gorgeous outfit ideas and elegant fashion inspiration to reinvent your personal style.</p>
+            </div>
+        </div>
+        <div class="container">
+            <section class="gallery-section">
+                <div id="auto-content-container" class="content-grid"></div>
+                <div id="loader" class="loader">Loading more styles...</div>
+            </section>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Fashion Inspo - Gorgeous Outfit Ideas. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
 </body>
 </html>
